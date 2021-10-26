@@ -31,8 +31,8 @@ export default function useAppCustomizer() {
 
   // Router Transition
   const layoutTypeOptions = [
-    { text: 'Vertical', value: 'vertical' },
     { text: 'Horizontal', value: 'horizontal' },
+    { text: 'Vertical', value: 'vertical' },
   ]
 
   // Navbar

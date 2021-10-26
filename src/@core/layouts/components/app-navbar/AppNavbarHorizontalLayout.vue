@@ -1,5 +1,8 @@
 <template>
-  <div class="navbar-container d-flex content align-items-center">
+  <div
+    class="navbar-container d-flex content align-items-center"
+    style="height: 70px"
+  >
 
     <!-- Nav Menu Toggler -->
     <ul class="nav navbar-nav d-xl-none">
@@ -17,18 +20,15 @@
     </ul>
 
     <!-- Left Col -->
-    <div class="bookmark-wrapper align-items-center flex-grow-1 d-none d-lg-flex">
+    <!-- <div class="bookmark-wrapper align-items-center flex-grow-1 d-none d-lg-flex">
       <bookmarks />
-    </div>
+    </div> -->
 
     <!-- Right Col -->
     <b-navbar-nav class="nav align-items-center ml-auto">
       <locale />
       <dark-Toggler class="d-none d-lg-block" />
-      <search-bar />
-      <cart-dropdown />
       <notification-dropdown />
-      <user-dropdown />
     </b-navbar-nav>
   </div>
 </template>
@@ -37,13 +37,10 @@
 import {
   BLink, BNavbarNav,
 } from 'bootstrap-vue'
-import Bookmarks from './components/Bookmarks.vue'
+// import Bookmarks from './components/Bookmarks.vue'
 import Locale from './components/Locale.vue'
 import DarkToggler from './components/DarkToggler.vue'
-import SearchBar from './components/SearchBar.vue'
-import CartDropdown from './components/CartDropdown.vue'
 import NotificationDropdown from './components/NotificationDropdown.vue'
-import UserDropdown from './components/UserDropdown.vue'
 
 export default {
   components: {
@@ -51,13 +48,10 @@ export default {
 
     // Navbar Components
     BNavbarNav,
-    Bookmarks,
+    // Bookmarks,
     Locale,
     DarkToggler,
-    SearchBar,
-    CartDropdown,
     NotificationDropdown,
-    UserDropdown,
   },
   props: {
     toggleVerticalMenuActive: {

@@ -5,48 +5,32 @@
   >
     <b-card-header>
       <h4 class="mb-0">
-        Goal Overview
+        HUMIDADE DO AR
       </h4>
-      <b-card-text class="font-medium-5 mb-0">
-        <feather-icon
-          icon="HelpCircleIcon"
-          size="21"
-          class="text-muted cursor-pointer"
-        />
-      </b-card-text>
     </b-card-header>
 
     <!-- apex chart -->
     <vue-apex-charts
       type="radialBar"
-      height="245"
+      height="325"
       class="my-2"
       :options="goalOverviewRadialBar"
       :series="data.series"
     />
     <b-row class="text-center mx-0">
       <b-col
-        cols="6"
-        class="border-top border-right d-flex align-items-between flex-column py-1"
-      >
-        <b-card-text class="text-muted mb-0">
-          Completed
-        </b-card-text>
-        <h3 class="font-weight-bolder mb-0">
-          {{ data.completed }}
-        </h3>
-      </b-col>
-
-      <b-col
-        cols="6"
+        cols="12"
         class="border-top d-flex align-items-between flex-column py-1"
       >
-        <b-card-text class="text-muted mb-0">
-          In Progress
+        <b-card-text class="mb-0">
+          Irrigação automática
         </b-card-text>
-        <h3 class="font-weight-bolder mb-0">
-          {{ data.inProgress }}
-        </h3>
+        <b-form-checkbox
+          checked="true"
+          class="custom-control-primary custom-suite"
+          name="check-button"
+          switch
+        />
       </b-col>
     </b-row>
   </b-card>
@@ -54,18 +38,19 @@
 
 <script>
 import {
-  BCard, BCardHeader, BRow, BCol, BCardText,
+  BCard, BCardHeader, BRow, BCol, BCardText, BFormCheckbox,
 } from 'bootstrap-vue'
 import VueApexCharts from 'vue-apexcharts'
 import { $themeColors } from '@themeConfig'
 
 const $strokeColor = '#ebe9f1'
 const $textHeadingColor = '#5e5873'
-const $goalStrokeColor2 = '#51e5a8'
+const $goalStrokeColor2 = '#FA8F33'
 export default {
   components: {
     VueApexCharts,
     BCard,
+    BFormCheckbox,
     BCardHeader,
     BRow,
     BCardText,
@@ -79,6 +64,7 @@ export default {
   },
   data() {
     return {
+      switch1: true,
       goalOverviewRadialBar: {
         chart: {
           height: 245,
@@ -125,7 +111,7 @@ export default {
             shade: 'dark',
             type: 'horizontal',
             shadeIntensity: 0.5,
-            gradientToColors: [$themeColors.success],
+            gradientToColors: [$themeColors.primary],
             inverseColors: true,
             opacityFrom: 1,
             opacityTo: 1,

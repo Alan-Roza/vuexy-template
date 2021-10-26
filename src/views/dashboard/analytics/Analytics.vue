@@ -24,12 +24,12 @@
         sm="6"
       >
         <statistic-card-with-area-chart
-          v-if="data.ordersRecevied"
+          v-if="hardCodedData"
           icon="PackageIcon"
           color="warning"
-          :statistic="kFormatter(data.ordersRecevied.analyticsData.orders)"
+          :statistic="kFormatter(hardCodedData.analyticsData.current)"
           statistic-title="Orders Received"
-          :chart-data="data.ordersRecevied.series"
+          :chart-data="hardCodedData.series"
         />
       </b-col>
     </b-row>
@@ -69,10 +69,10 @@ import { BRow, BCol } from 'bootstrap-vue'
 import StatisticCardWithAreaChart from '@core/components/statistics-cards/StatisticCardWithAreaChart.vue'
 import { kFormatter } from '@core/utils/filter'
 import InvoiceList from '@/views/apps/invoice/invoice-list/InvoiceList.vue'
-import AnalyticsCongratulation from './AnalyticsCongratulation.vue'
+import AnalyticsCongratulation from '../ecommerce/AnalyticsCongratulation.vue'
 import AnalyticsAvgSessions from './AnalyticsAvgSessions.vue'
 import AnalyticsSupportTracker from './AnalyticsSupportTracker.vue'
-import AnalyticsTimeline from './AnalyticsTimeline.vue'
+import AnalyticsTimeline from '../ecommerce/AnalyticsTimeline.vue'
 import AnalyticsSalesRadarChart from './AnalyticsSalesRadarChart.vue'
 import AnalyticsAppDesign from './AnalyticsAppDesign.vue'
 
@@ -92,12 +92,21 @@ export default {
   data() {
     return {
       data: {},
+      hardCodedData: {
+        series: [{
+          name: 'Temperatura',
+          data: [24, 23, 22, 24, 25, 27],
+        }],
+        analyticsData: {
+          current: 27,
+        },
+      },
     }
   },
   created() {
     // data
     this.$http.get('/analytics/data')
-      .then(response => { this.data = response.data })
+      .then(response => { console.log(response) })
   },
   methods: {
     kFormatter,
