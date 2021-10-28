@@ -1,155 +1,302 @@
 <template>
-  <section id="dashboard-ecommerce">
-    <b-row class="match-height">
-      <b-col
-        xl="4"
-        md="6"
-      >
-        <ecommerce-medal :data="data.congratulations" />
-      </b-col>
-      <b-col
-        xl="8"
-        md="6"
-      >
-        <ecommerce-statistics :data="data.statisticsItems" />
-      </b-col>
-    </b-row>
-
-    <b-row class="match-height">
-      <b-col lg="4">
-        <b-row class="match-height">
-          <!-- Bar Chart - Orders -->
-          <b-col
-            lg="6"
-            md="3"
-            cols="6"
+  <container>
+    <section
+      id="home"
+      class="section-image"
+    >
+      <div class="position-relative">
+        <img
+          src="@/assets/images/upx/roof-hd.jpg"
+          alt="telhado verde"
+          class="green-roof"
+        >
+        <div>
+          <img
+            class="roof-text"
+            src="@/assets/images/upx/text.png"
+            alt="texto"
           >
-            <ecommerce-order-chart :data="data.statisticsOrder" />
-          </b-col>
-          <!--/ Bar Chart - Orders -->
-          <b-col
-            lg="6"
-            md="3"
-            cols="6"
-          >
-            <ecommerce-profit-chart :data="data.statisticsProfit" />
-          </b-col>
-          <b-col
-            lg="12"
-            md="6"
-          >
-            <ecommerce-earnings-chart :data="data.earningsChart" />
-          </b-col>
-        </b-row>
-      </b-col>
+        </div>
+      </div>
+    </section>
 
-      <!-- Revenue Report Card -->
-      <b-col lg="8">
-        <ecommerce-revenue-report :data="data.revenue" />
-      </b-col>
-      <!--/ Revenue Report Card -->
-    </b-row>
+    <section
+      id="about"
+      class="section-about"
+    >
+      <div class="dashboard-text">
+        O que é Telhado Verde?
+      </div>
+      <div style="font-size: 17px; margin-bottom: 30px">
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Facere modi nulla consectetur pariatur, rem blanditiis neque omnis eos nesciunt provident in officiis vero asperiores eaque aspernatur corporis dicta. Praesentium, itaque?
+        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Obcaecati eos deleniti quia esse quas ratione assumenda velit? Molestias facilis minima fuga, architecto, aut voluptate labore, esse nulla saepe dicta nisi. Lorem ipsum dolor sit amet consectetur adipisicing elit. Facere modi nulla consectetur pariatur, rem blanditiis neque omnis eos nesciunt provident in officiis vero asperiores eaque aspernatur corporis dicta. Praesentium, itaque?
+        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Obcaecati eos deleniti quia esse quas ratione assumenda velit? Molestias facilis minima fuga, architecto, aut voluptate labore, esse nulla saepe dicta nisi. Lorem ipsum dolor sit amet consectetur adipisicing elit. Facere modi nulla consectetur pariatur, rem blanditiis neque omnis eos nesciunt provident in officiis vero asperiores eaque aspernatur corporis dicta. Praesentium, itaque?
+      </div>
 
-    <b-row class="match-height">
-      <!-- Company Table Card -->
-      <b-col lg="8">
-        <ecommerce-company-table :table-data="data.companyTable" />
-      </b-col>
-      <!--/ Company Table Card -->
+      <div class="dashboard-text">
+        Benefícios do Telhado Verde
+      </div>
+      <div style="font-size: 17px">
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Facere modi nulla consectetur pariatur, rem blanditiis neque omnis eos nesciunt provident in officiis vero asperiores eaque aspernatur corporis dicta. Praesentium, itaque?
+        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Obcaecati eos deleniti quia esse quas ratione assumenda velit? Molestias facilis minima fuga, architecto, aut voluptate labore, esse nulla saepe dicta nisi. Lorem ipsum dolor sit amet consectetur adipisicing elit. Facere modi nulla consectetur pariatur, rem blanditiis neque omnis eos nesciunt provident in officiis vero asperiores eaque aspernatur corporis dicta. Praesentium, itaque?
+        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Obcaecati eos deleniti quia esse quas ratione assumenda velit? Molestias facilis minima fuga, architecto, aut voluptate labore, esse nulla saepe dicta nisi. Lorem ipsum dolor sit amet consectetur adipisicing elit. Facere modi nulla consectetur pariatur, rem blanditiis neque omnis eos nesciunt provident in officiis vero asperiores eaque aspernatur corporis dicta. Praesentium, itaque?
+        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Obcaecati eos deleniti quia esse quas ratione assumenda velit? Molestias facilis minima fuga, architecto, aut voluptate labore, esse nulla saepe dicta nisi. Lorem ipsum dolor sit amet consectetur adipisicing elit. Facere modi nulla consectetur pariatur, rem blanditiis neque omnis eos nesciunt provident in officiis vero asperiores eaque aspernatur corporis dicta. Praesentium, itaque?
+        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Obcaecati eos deleniti quia esse quas ratione assumenda velit? Molestias facilis minima fuga, architecto, aut voluptate labore, esse nulla saepe dicta nisi.
+      </div>
+    </section>
 
-      <!-- Developer Meetup Card -->
-      <b-col
-        lg="4"
-        md="6"
-      >
-        <ecommerce-meetup :data="data.meetup" />
-      </b-col>
-      <!--/ Developer Meetup Card -->
+    <section id="dashboard">
+      <div class="dashboard-text">
+        Dashboard
+      </div>
+      <b-row class="match-height">
+        <b-col
+          lg="6"
+          md="12"
+        >
+          <analytics-congratulation :data="data.congratulations" />
+        </b-col>
+        <b-col
+          lg="3"
+          sm="6"
+        >
+          <statistic-card-with-area-chart
+            v-if="hardCodedData.temperature"
+            icon="SunIcon"
+            color="danger"
+            :statistic="
+              kFormatter(hardCodedData.temperature.analyticsData.current)
+            "
+            statistic-title="Temperatura Externa"
+            :chart-data="hardCodedData.temperature.series"
+          />
+        </b-col>
+        <b-col
+          lg="3"
+          sm="6"
+        >
+          <statistic-card-with-area-chart
+            v-if="hardCodedData.temperature"
+            icon="SunIcon"
+            color="warning"
+            :statistic="
+              kFormatter(hardCodedData.temperature.analyticsData.current)
+            "
+            statistic-title="Temperatura Interna"
+            :chart-data="hardCodedData.temperature.series"
+          />
+        </b-col>
+      </b-row>
 
-      <!-- Browser States Card -->
-      <b-col
-        lg="4"
-        md="6"
-      >
-        <ecommerce-browser-states />
-      </b-col>
-      <!--/ Browser States Card -->
-
-      <!-- Goal Overview Card -->
-      <b-col
-        lg="4"
-        md="6"
-      >
-        <ecommerce-goal-overview :data="data.goalOverview" />
-      </b-col>
-      <!--/ Goal Overview Card -->
-
-      <!-- Transaction Card -->
-      <b-col
-        lg="4"
-        md="6"
-      >
-        <ecommerce-transactions :data="data.transactionData" />
-      </b-col>
-      <!--/ Transaction Card -->
-    </b-row>
-  </section>
+      <b-row class="match-height">
+        <b-col lg="12">
+          <b-row class="match-height">
+            <b-col
+              lg="4"
+              md="6"
+            >
+              <ecommerce-goal-overview :data="data.goalOverview" />
+            </b-col>
+            <b-col lg="4">
+              <analytics-timeline :data="timeline" />
+            </b-col>
+            <b-col lg="4">
+              <analytics-support-tracker :data="suporteTrack" />
+            </b-col>
+          </b-row>
+        </b-col>
+      </b-row>
+    </section>
+  </container>
 </template>
 
 <script>
 import { BRow, BCol } from 'bootstrap-vue'
 
 import { getUserData } from '@/auth/utils'
-import EcommerceMedal from './EcommerceMedal.vue'
-import EcommerceStatistics from './EcommerceStatistics.vue'
-import EcommerceRevenueReport from './EcommerceRevenueReport.vue'
-import EcommerceOrderChart from './EcommerceOrderChart.vue'
-import EcommerceProfitChart from './EcommerceProfitChart.vue'
-import EcommerceEarningsChart from './EcommerceEarningsChart.vue'
-import EcommerceCompanyTable from './EcommerceCompanyTable.vue'
-import EcommerceMeetup from './EcommerceMeetup.vue'
-import EcommerceBrowserStates from './EcommerceBrowserStates.vue'
+import StatisticCardWithAreaChart from '@core/components/statistics-cards/StatisticCardWithAreaChart.vue'
+import { kFormatter } from '@core/utils/filter'
+import AnalyticsSupportTracker from './AnalyticsSupportTracker.vue'
+import AnalyticsTimeline from './AnalyticsTimeline.vue'
+import AnalyticsCongratulation from './AnalyticsCongratulation.vue'
+// import EcommerceRevenueReport from './EcommerceRevenueReport.vue'
+// import EcommerceOrderChart from './EcommerceOrderChart.vue'
+// import EcommerceProfitChart from './EcommerceProfitChart.vue'
+// import EcommerceEarningsChart from './EcommerceEarningsChart.vue'
+// import EcommerceCompanyTable from './EcommerceCompanyTable.vue'
+// import EcommerceMeetup from './EcommerceMeetup.vue'
+// import EcommerceBrowserStates from './EcommerceBrowserStates.vue'
 import EcommerceGoalOverview from './EcommerceGoalOverview.vue'
-import EcommerceTransactions from './EcommerceTransactions.vue'
 
 export default {
   components: {
     BRow,
     BCol,
-
-    EcommerceMedal,
-    EcommerceStatistics,
-    EcommerceRevenueReport,
-    EcommerceOrderChart,
-    EcommerceProfitChart,
-    EcommerceEarningsChart,
-    EcommerceCompanyTable,
-    EcommerceMeetup,
-    EcommerceBrowserStates,
+    StatisticCardWithAreaChart,
+    AnalyticsCongratulation,
+    AnalyticsTimeline,
+    AnalyticsSupportTracker,
+    // EcommerceRevenueReport,
+    // EcommerceOrderChart,
+    // EcommerceProfitChart,
+    // EcommerceEarningsChart,
+    // EcommerceCompanyTable,
+    // EcommerceMeetup,
+    // EcommerceBrowserStates,
     EcommerceGoalOverview,
-    EcommerceTransactions,
   },
   data() {
     return {
       data: {},
+      timeline: {
+        step1: {
+          duration: '12 min',
+          fileName: 'data.json',
+          img: 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACEAAAAkCAMAAAAw96PuAAAAAXNSR0IArs4c6QAAAERlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAA6ABAAMAAAABAAEAAKACAAQAAAABAAAAIaADAAQAAAABAAAAJAAAAADeoA9wAAABcVBMVEUAAAD/qlX/qlX/n2D/qlX/n1D/pUv/qkf/oUP/pk3/qkn/okb/o0f/okT/n0j/oEn/n0b/pEn/oEf/okb/oUj/o0f/n0X/oUT/o0f/oEb/pEP/okb/n0T/okT/oEb/n0T/oEX/o0b/n0P/oUP/okb/oUT/n0b/oUX/oET/oUb/n0X/oET/oUP/oEX/okT/oEP/oUX/oUP/oET/oUX/oEX/n0T/oEX/oET/oEX/n0T/oET/n0P/oEX/n0P/oUT/n0T/oEX/oUT/oET/oEP/oET/oUT/oEP/oEP/oET/oEP/oEP/oET/n0T/oET/oEP/n0T/oET/n0T/n0T/oET/n0T/n0P/oET/n0P/oET/n0T/oEP/oET/oET/n0T/n0T/oEP/oEP/n0P/oET/n0P/n0T/n0T/n0P/oEP/n0T/oEP/n0P/oET/n0T/oEP/oET/n0T/oET/oEP/n0T/oEP/oET/n0P/oEP/oET/n0T/oEP/n0NWaDR5AAAAenRSTlMAAwYICRAREhMUFRYZHiAjKCorLC4vMDEyMzU3ODw+QENFSExNT1BRU1RVVldZWltcX2Zna21zdHZ4e31+hYeIkZKTlJmam5yen6OkpaanqKmtsLG4ury9v8DBw8fIytHU1dfY2t3g5OXn6Onq6+zt7u/w8/n6+/z9/jLTlDYAAAE3SURBVDjL7dRHUwIxFMDxZ0OsIAoqtijqYhcVCxZQZO0iWLAXYC0IsqIivE/vRh2GLLs5evJ/yLyZ/CaHzCQAAAbxAZmezMBUfoPqEk2McGFpz5Zi4VPtyjllSTYXiYBKRCYpSbVwBIx/UmLlCBij5MXGETCaVYZ0G0fAMCVyO0eA80MZX+0cAQIlmVaOgAFK5rREbOq3sJ5g+hcaQvweTyOYCPjjiMf+c2XZyeP+PSsER6rW2ruNQzWDlW4ksIlVB2pxBnuIR3CCqxAjlvo3Y4nITgCRlsve8RZCxGP2NgRZ0S8gXpuc6xDFEFyRhWBdI3NGdM2wKC1tmEbSxr5dmz1H5vMdwIhw13TmTuh2JzHu6pmV0bOFl46Lv71TH0/M6P0OhTp1fphChz8Po1p81N6XVioAvgBZgp3AxW+3KgAAAABJRU5ErkJggg==',
+          subtitle: 'subtitle',
+          title: 'title',
+        },
+        step2: {
+          avatar: '/img/avatar-s-9.397f0acd.jpg',
+          avatarName: 'John',
+          occupation: 'CEO',
+          duration: '12 min',
+          subtitle: 'subtitle',
+          title: 'title',
+        },
+        step3: {
+          avatar: '/img/avatar-s-9.397f0acd.jpg',
+          avatarName: 'John',
+          occupation: 'CEO',
+          duration: '12 min',
+          subtitle: 'subtitle',
+          title: 'title',
+        },
+        step4: {
+          avatar: '/img/avatar-s-9.397f0acd.jpg',
+          avatarName: 'John',
+          occupation: 'CEO',
+          duration: '12 min',
+          subtitle: 'subtitle',
+          title: 'title',
+        },
+      },
+      suporteTrack: {
+        lastDays: ['last 28', 'last month'],
+        supportTrackerRadialBar: {
+          series: [83],
+        },
+        newTicket: 29,
+        openTicket: 20,
+        responseTime: 1,
+        title: 'luz',
+        totalTicket: 160,
+      },
+      hardCodedData: {
+        temperature: {
+          series: [
+            {
+              name: 'Temperatura',
+              data: [24, 23, 22, 24, 25, 27],
+            },
+          ],
+          analyticsData: {
+            current: '27℃',
+          },
+        },
+      },
     }
+  },
+  watch: {
+    scroll() {
+      console.log('foi')
+      window.addEventListener('hashchange', () => window.scrollTo(window.scrollX, window.scrollY - 100))
+    },
   },
   created() {
     // data
-    this.$http.get('/ecommerce/data')
-      .then(response => {
-        this.data = response.data
+    this.$http.get('/ecommerce/data').then(response => {
+      this.data = response.data
 
-        // ? Your API will return name of logged in user or you might just directly get name of logged in user
-        // ? This is just for demo purpose
-        const userData = getUserData()
-        this.data.congratulations.name = userData.fullName.split(' ')[0] || userData.username
-      })
+      // ? Your API will return name of logged in user or you might just directly get name of logged in user
+      // ? This is just for demo purpose
+      const userData = getUserData()
+      this.data.congratulations.name = userData.fullName.split(' ')[0] || userData.username
+    })
+  },
+  methods: {
+    kFormatter,
   },
 }
 </script>
 
 <style lang="scss">
-@import '@core/scss/vue/pages/dashboard-ecommerce.scss';
-@import '@core/scss/vue/libs/chart-apex.scss';
+@import "@core/scss/vue/pages/dashboard-ecommerce.scss";
+@import "@core/scss/vue/libs/chart-apex.scss";
+#home {
+  padding-top: 150px;
+  margin-top: -150px;
+}
+#dashboard {
+  padding-top: 150px;
+  margin-top: -150px;
+}
+::-webkit-scrollbar {
+  width: 8px;
+  width: 11px;
+}
+::-webkit-scrollbar-track {
+  background: #ffffff;
+}
+::-webkit-scrollbar-thumb {
+  background: #ffa228;
+  border-radius: 20px;
+  border: 0.2em solid #ffffff;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #ffa228;
+}
+
+.section-image {
+  margin-bottom: 50px;
+}
+
+.section-about {
+  padding-bottom: 50px;
+  max-width: calc(100% - 300px);
+  margin: auto;
+}
+
+.dashboard-text {
+  font-size: 35px;
+}
+
+.green-roof {
+  background-attachment: fixed;
+  background-position: center;
+  width: calc(100% + 65px);
+  margin-left: -30px;
+  margin-top: -250px;
+  @media (max-width: 1200px) {
+    margin-top: -120px;
+  }
+  @media (max-width: 600px) {
+    margin-top: -60px;
+  }
+}
+
+.position-relative {
+  position: relative;
+  justify-content: center;
+  text-align: center;
+}
+
+.roof-text {
+  position: absolute;
+  left: 20%;
+  bottom: 25%;
+  margin-left: -20px;
+  height: 200px;
+  // left: 40%;
+}
 </style>

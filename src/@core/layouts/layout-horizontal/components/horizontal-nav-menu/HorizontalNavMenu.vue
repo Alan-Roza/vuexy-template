@@ -1,16 +1,29 @@
 <template>
-  <div class="navbar-container main-menu-content">
-    <horizontal-nav-menu-items :items="navMenuItems" />
+  <div>
+    <div class="navbar-container main-menu-content">
+      <a
+        class="button-nav"
+        href="#home"
+      >
+        Home
+      </a>
+    </div>
+    <div class="navbar-container main-menu-content">
+      <a
+        class="button-nav-home"
+        href="#dashboard"
+      >
+        Dashboard
+      </a>
+    </div>
   </div>
 </template>
 
 <script>
 import navMenuItems from '@/navigation/horizontal'
-import HorizontalNavMenuItems from './components/horizontal-nav-menu-items/HorizontalNavMenuItems.vue'
 
 export default {
   components: {
-    HorizontalNavMenuItems,
   },
   setup() {
     return {
@@ -22,4 +35,35 @@ export default {
 
 <style lang="scss">
 @import "~@core/scss/base/core/menu/menu-types/horizontal-menu.scss";
+
+.button-nav {
+  transition: 250ms;
+  position: absolute;
+  margin-top: 13px;
+  color: white;
+  border-radius: 4px;
+  font-weight: bold;
+  padding: 11px 40px;
+  background-image: linear-gradient(#ffc170, #FFA228);
+  &:hover {
+    color: rgb(255, 247, 235);
+    background-image: linear-gradient(#f8b864, #fca22e);
+  }
+}
+.button-nav-home {
+  transition: 250ms;
+  transform: translate(90%);
+  position: absolute;
+  margin-top: 13px;
+  color: white;
+  border-radius: 4px;
+  font-weight: bold;
+  padding: 11px 40px;
+  background-image: linear-gradient(#ffc170, #FFA228);
+  &:hover {
+    color: rgb(255, 247, 235);
+    background-image: linear-gradient(#f8b864, #fca22e);
+  }
+}
+
 </style>

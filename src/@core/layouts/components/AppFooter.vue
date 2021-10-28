@@ -4,15 +4,15 @@
       COPYRIGHT  © {{ new Date().getFullYear() }}
       <b-link
         class="ml-25"
-        href="https://1.envato.market/pixinvent_portfolio"
+        href="https://github.com/RozaAlan/UPx4-Dashboard"
         target="_blank"
-      >Pixinvent</b-link>
-      <span class="d-none d-sm-inline-block">, All rights Reserved</span>
+      >Github</b-link>
+      <span class="d-none d-sm-inline-block">, Todos os Direitos Reservados</span>
     </span>
 
-    <span class="float-md-right d-none d-md-block">Hand-crafted &amp; Made with
+    <span class="float-md-right d-none d-md-block">Projeto de UPx 4 - Facens
       <feather-icon
-        icon="HeartIcon"
+        icon="LayersIcon"
         size="21"
         class="text-danger stroke-current"
       />

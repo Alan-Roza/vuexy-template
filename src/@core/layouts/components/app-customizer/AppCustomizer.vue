@@ -1,7 +1,7 @@
 <template>
   <div
     class="customizer d-none d-md-block"
-    :class="{'open': isCustomizerOpen}"
+    :class="{ open: isCustomizerOpen }"
   >
     <!-- Toggler -->
     <b-link
@@ -17,7 +17,14 @@
     <!-- /Toggler -->
 
     <!-- Header -->
-    <div class="customizer-section d-flex justify-content-between align-items-center">
+    <div
+      class="
+        customizer-section
+        d-flex
+        justify-content-between
+        align-items-center
+      "
+    >
       <div>
         <h4 class="text-uppercase mb-0">
           Theme Customizer
@@ -39,7 +46,6 @@
     >
       <!-- Skin, RTL, Router Animation -->
       <div class="customizer-section">
-
         <!-- Skin -->
         <b-form-group label="Skin">
           <b-form-radio-group
@@ -85,7 +91,7 @@
             :clearable="false"
             label="title"
             :options="routerTransitionOptions"
-            :reduce="option => option.value"
+            :reduce="(option) => option.value"
           />
         </b-form-group>
       </div>
@@ -93,11 +99,8 @@
 
       <!-- SECTION: Menu -->
       <div class="customizer-section">
-
         <!-- Layout Type -->
-        <b-form-group
-          label="Menu Layout"
-        >
+        <b-form-group label="Menu Layout">
           <b-form-radio-group
             v-model="layoutType"
             name="layout-type"
@@ -131,12 +134,10 @@
             inline
           />
         </div>
-
       </div>
 
       <!-- SECTION: Navbar -->
       <div class="customizer-section">
-
         <!-- Navbar Color -->
         <b-form-group
           v-show="layoutType === 'vertical'"
@@ -146,13 +147,17 @@
             v-for="(color, index) in navbarColors"
             :key="color"
             class="p-1 d-inline-block rounded mr-1 cursor-pointer"
-            :class="[`bg-${color}`, {'border border-light': !index}, {'mark-active': navbarBackgroundColor === color}]"
+            :class="[
+              `bg-${color}`,
+              { 'border border-light': !index },
+              { 'mark-active': navbarBackgroundColor === color },
+            ]"
             @click="navbarBackgroundColor = color"
           />
         </b-form-group>
 
         <!-- Navbar Type -->
-        <b-form-group :label="layoutType === 'vertical' ? 'Navbar Type' : 'Menu Type'">
+        <b-form-group :label="'Menu Type'">
           <b-form-radio-group
             v-model="navbarType"
             name="navbar-type"
@@ -163,7 +168,6 @@
 
       <!-- SECTION: Footer -->
       <div class="customizer-section">
-
         <!-- Footer Type -->
         <b-form-group label="Footer Type">
           <b-form-radio-group
@@ -302,16 +306,16 @@ export default {
 </script>
 
 <style lang="scss">
-@import '@core/scss/vue/libs/vue-select.scss';
+@import "@core/scss/vue/libs/vue-select.scss";
 </style>
 
 <style lang="scss" scoped>
-@import '~@core/scss/base/bootstrap-extended/include';
-@import '~@core/scss/base/components/variables-dark';
+@import "~@core/scss/base/bootstrap-extended/include";
+@import "~@core/scss/base/components/variables-dark";
 
 .customizer-section {
   padding: 1.5rem;
-    border-bottom: 1px solid #ebe9f1;
+  border-bottom: 1px solid #ebe9f1;
 
   .dark-layout & {
     border-color: $theme-dark-border-color;
@@ -324,9 +328,9 @@ export default {
   }
 
   .form-group {
-    margin-bottom: 1.5rem;;
+    margin-bottom: 1.5rem;
     &:last-of-type {
-    margin-bottom: 0;
+      margin-bottom: 0;
     }
     ::v-deep legend {
       font-weight: 500;
@@ -335,10 +339,10 @@ export default {
 }
 
 .mark-active {
-  box-shadow: 0 0 0 0.2rem rgba(38,143,255,.5);
+  box-shadow: 0 0 0 0.2rem rgba(38, 143, 255, 0.5);
 }
 
 .ps-customizer-area {
-  height: calc(100% - 83px)
+  height: calc(100% - 83px);
 }
 </style>
