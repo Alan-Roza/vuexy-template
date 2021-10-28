@@ -20,6 +20,31 @@
       </div>
     </section>
 
+    <section
+      id="about"
+      class="section-about"
+    >
+      <div class="dashboard-text">
+        O que é Telhado Verde?
+      </div>
+      <div style="font-size: 17px; margin-bottom: 30px">
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Facere modi nulla consectetur pariatur, rem blanditiis neque omnis eos nesciunt provident in officiis vero asperiores eaque aspernatur corporis dicta. Praesentium, itaque?
+        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Obcaecati eos deleniti quia esse quas ratione assumenda velit? Molestias facilis minima fuga, architecto, aut voluptate labore, esse nulla saepe dicta nisi. Lorem ipsum dolor sit amet consectetur adipisicing elit. Facere modi nulla consectetur pariatur, rem blanditiis neque omnis eos nesciunt provident in officiis vero asperiores eaque aspernatur corporis dicta. Praesentium, itaque?
+        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Obcaecati eos deleniti quia esse quas ratione assumenda velit? Molestias facilis minima fuga, architecto, aut voluptate labore, esse nulla saepe dicta nisi. Lorem ipsum dolor sit amet consectetur adipisicing elit. Facere modi nulla consectetur pariatur, rem blanditiis neque omnis eos nesciunt provident in officiis vero asperiores eaque aspernatur corporis dicta. Praesentium, itaque?
+      </div>
+
+      <div class="dashboard-text">
+        Benefícios do Telhado Verde
+      </div>
+      <div style="font-size: 17px">
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Facere modi nulla consectetur pariatur, rem blanditiis neque omnis eos nesciunt provident in officiis vero asperiores eaque aspernatur corporis dicta. Praesentium, itaque?
+        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Obcaecati eos deleniti quia esse quas ratione assumenda velit? Molestias facilis minima fuga, architecto, aut voluptate labore, esse nulla saepe dicta nisi. Lorem ipsum dolor sit amet consectetur adipisicing elit. Facere modi nulla consectetur pariatur, rem blanditiis neque omnis eos nesciunt provident in officiis vero asperiores eaque aspernatur corporis dicta. Praesentium, itaque?
+        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Obcaecati eos deleniti quia esse quas ratione assumenda velit? Molestias facilis minima fuga, architecto, aut voluptate labore, esse nulla saepe dicta nisi. Lorem ipsum dolor sit amet consectetur adipisicing elit. Facere modi nulla consectetur pariatur, rem blanditiis neque omnis eos nesciunt provident in officiis vero asperiores eaque aspernatur corporis dicta. Praesentium, itaque?
+        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Obcaecati eos deleniti quia esse quas ratione assumenda velit? Molestias facilis minima fuga, architecto, aut voluptate labore, esse nulla saepe dicta nisi. Lorem ipsum dolor sit amet consectetur adipisicing elit. Facere modi nulla consectetur pariatur, rem blanditiis neque omnis eos nesciunt provident in officiis vero asperiores eaque aspernatur corporis dicta. Praesentium, itaque?
+        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Obcaecati eos deleniti quia esse quas ratione assumenda velit? Molestias facilis minima fuga, architecto, aut voluptate labore, esse nulla saepe dicta nisi.
+      </div>
+    </section>
+
     <section id="dashboard">
       <div class="dashboard-text">
         Dashboard
@@ -234,6 +259,12 @@ export default {
 
 .section-image {
   margin-bottom: 50px;
+}
+
+.section-about {
+  padding-bottom: 50px;
+  max-width: calc(100% - 300px);
+  margin: auto;
 }
 
 .dashboard-text {
