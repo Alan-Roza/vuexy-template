@@ -1,8 +1,8 @@
 export default [
   {
-    header: 'Dashboards',
+    header: 'Dashboard',
     icon: 'SettingsIcon',
-    route: 'dashboard',
+    route: '/',
     title: 'Dashboard',
   },
 ]

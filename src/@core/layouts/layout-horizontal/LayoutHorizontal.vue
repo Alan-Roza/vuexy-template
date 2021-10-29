@@ -39,7 +39,7 @@
       <vertical-nav-menu
         :is-vertical-menu-active="isVerticalMenuActive"
         :toggle-vertical-menu-active="toggleVerticalMenuActive"
-        class="d-block d-xl-none"
+        class="d-block d-xs-none"
       >
         <template #header="slotProps">
           <slot

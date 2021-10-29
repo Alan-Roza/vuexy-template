@@ -2,7 +2,7 @@
   <div class="navbar-container d-flex content align-items-center">
 
     <!-- Nav Menu Toggler -->
-    <ul class="nav navbar-nav d-xl-none">
+    <ul class="nav navbar-nav d-xs-none">
       <li class="nav-item">
         <b-link
           class="nav-link"

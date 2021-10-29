@@ -1,5 +1,5 @@
 <template>
-  <container>
+  <container class="container-scroll">
     <section
       id="home"
       class="section-image"
@@ -10,7 +10,7 @@
           alt="telhado verde"
           class="green-roof"
         >
-        <div>
+        <div class="roof-text">
           <img
             class="roof-text"
             src="@/assets/images/upx/text.png"
@@ -28,22 +28,48 @@
         O que é Telhado Verde?
       </div>
       <div style="font-size: 17px; margin-bottom: 30px">
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Facere modi nulla consectetur pariatur, rem blanditiis neque omnis eos nesciunt provident in officiis vero asperiores eaque aspernatur corporis dicta. Praesentium, itaque?
-        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Obcaecati eos deleniti quia esse quas ratione assumenda velit? Molestias facilis minima fuga, architecto, aut voluptate labore, esse nulla saepe dicta nisi. Lorem ipsum dolor sit amet consectetur adipisicing elit. Facere modi nulla consectetur pariatur, rem blanditiis neque omnis eos nesciunt provident in officiis vero asperiores eaque aspernatur corporis dicta. Praesentium, itaque?
-        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Obcaecati eos deleniti quia esse quas ratione assumenda velit? Molestias facilis minima fuga, architecto, aut voluptate labore, esse nulla saepe dicta nisi. Lorem ipsum dolor sit amet consectetur adipisicing elit. Facere modi nulla consectetur pariatur, rem blanditiis neque omnis eos nesciunt provident in officiis vero asperiores eaque aspernatur corporis dicta. Praesentium, itaque?
+        Telhado verde é uma cobertura de plantas e um telhado ecológico que tem ganhado cada vez mais espaço nas construções.
+        Composto por vegetação, ele é mais que uma cobertura verde e envolve técnicas deimpermeabilização e de plantio que devem ser feitas por um profissional qualificado.
+        A partir do telhado verde é possível ter um aproveitamento melhor da luz do sol, bem como mais frescor para dentro de casa.
       </div>
 
       <div class="dashboard-text">
         Benefícios do Telhado Verde
       </div>
       <div style="font-size: 17px">
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Facere modi nulla consectetur pariatur, rem blanditiis neque omnis eos nesciunt provident in officiis vero asperiores eaque aspernatur corporis dicta. Praesentium, itaque?
-        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Obcaecati eos deleniti quia esse quas ratione assumenda velit? Molestias facilis minima fuga, architecto, aut voluptate labore, esse nulla saepe dicta nisi. Lorem ipsum dolor sit amet consectetur adipisicing elit. Facere modi nulla consectetur pariatur, rem blanditiis neque omnis eos nesciunt provident in officiis vero asperiores eaque aspernatur corporis dicta. Praesentium, itaque?
-        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Obcaecati eos deleniti quia esse quas ratione assumenda velit? Molestias facilis minima fuga, architecto, aut voluptate labore, esse nulla saepe dicta nisi. Lorem ipsum dolor sit amet consectetur adipisicing elit. Facere modi nulla consectetur pariatur, rem blanditiis neque omnis eos nesciunt provident in officiis vero asperiores eaque aspernatur corporis dicta. Praesentium, itaque?
-        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Obcaecati eos deleniti quia esse quas ratione assumenda velit? Molestias facilis minima fuga, architecto, aut voluptate labore, esse nulla saepe dicta nisi. Lorem ipsum dolor sit amet consectetur adipisicing elit. Facere modi nulla consectetur pariatur, rem blanditiis neque omnis eos nesciunt provident in officiis vero asperiores eaque aspernatur corporis dicta. Praesentium, itaque?
-        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Obcaecati eos deleniti quia esse quas ratione assumenda velit? Molestias facilis minima fuga, architecto, aut voluptate labore, esse nulla saepe dicta nisi.
-      </div>
-    </section>
+        <ul>
+          <li>
+            Diminui a poluição e melhora a qualidade do ar das cidades. A vegetação absorve as substâncias tóxicas e a libera oxigênio na atmosfera.
+          </li>
+          <li>
+            Ajuda a combater o efeito de Ilhas de Calor nas grandes cidades.
+          </li>
+          <li>
+            Melhora o isolamento térmico da edificação. Protege contra as altas temperatura no verão e ajuda a manter a temperatura interna no inverno
+          </li>
+          <li>
+            Melhora o isolamento acústico da edificação. A vegetação absorve e isola ruídos.
+          </li>
+          <li>
+            Maior retenção da água das chuvas. A vegetação auxilia na drenagem da água da chuva, reduzindo assim a necessidade de escoamento de água e de sistemas de esgoto e ainda filtra a poluição dessas águas.
+          </li>
+          <li>
+            Diminui a possibilidade de enchentes. Como retem melhor a água da chuva, o excesso não vai para as ruas.
+          </li>
+          <li>
+            Ajuda na diminuição da temperatura do micro e macro ambientes externo.
+          </li>
+          <li>
+            Reduz o consumo de energia, e melhora a eficiência energética devido à redução da temperatura no ambiente interno, diminuindo a necessidade de refrigeração.
+          </li>
+          <li>
+            Aumento da biodiversidade, a criação do telhado verde também é a criação de um habitat, portanto atrai pássaros, borboletas entre outros.
+          </li>
+          <li>
+            Valorização do Imóvel: Os imóveis que recebem o projeto tendem a ser mais valorizados no mercado, devido aos benefícios que ele traz.
+          </li>
+        </ul>
+      </div></section>
 
     <section id="dashboard">
       <div class="dashboard-text">
@@ -223,6 +249,10 @@ export default {
       const userData = getUserData()
       this.data.congratulations.name = userData.fullName.split(' ')[0] || userData.username
     })
+
+    this.$http.get('https://api.thingspeak.com/channels/1552907/feeds.json?api_key=HM30N5H1K70GRR25&results=1').then(response => {
+      console.log(response, 'response')
+    })
   },
   methods: {
     kFormatter,
@@ -238,6 +268,10 @@ export default {
   margin-top: -150px;
 }
 #dashboard {
+  padding-top: 150px;
+  margin-top: -150px;
+}
+#about {
   padding-top: 150px;
   margin-top: -150px;
 }
@@ -265,10 +299,17 @@ export default {
   padding-bottom: 50px;
   max-width: calc(100% - 300px);
   margin: auto;
+  @media (max-width: 1200px) {
+    max-width: 100%
+  }
 }
 
 .dashboard-text {
   font-size: 35px;
+}
+
+html {
+  scroll-behavior: smooth;
 }
 
 .green-roof {
@@ -279,9 +320,15 @@ export default {
   margin-top: -250px;
   @media (max-width: 1200px) {
     margin-top: -120px;
+    width: calc(100% + 120px);
   }
-  @media (max-width: 600px) {
-    margin-top: -60px;
+  @media (max-width: 768px) {
+    height: auto;
+    width: auto;
+    margin-top: -130px;
+  }
+  @media (max-width: 545px) {
+    transform: translate(-20%);
   }
 }
 
@@ -289,14 +336,16 @@ export default {
   position: relative;
   justify-content: center;
   text-align: center;
+  margin-bottom: -350px;
+    @media (max-width: 991px) {
+    display: none;
+  }
 }
 
 .roof-text {
-  position: absolute;
-  left: 20%;
-  bottom: 25%;
-  margin-left: -20px;
+  margin-left: auto;
+  margin-right: auto;
+  transform: translate(0, -90%);
   height: 200px;
-  // left: 40%;
 }
 </style>

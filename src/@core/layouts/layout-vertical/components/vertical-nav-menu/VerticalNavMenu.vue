@@ -1,6 +1,6 @@
 <template>
   <div
-    class="main-menu menu-fixed menu-accordion menu-shadow"
+    class="main-menu menu-fixed menu-accordion menu-shadow d-xl-none"
     :class="[
       { 'expanded': !isVerticalMenuCollapsed || (isVerticalMenuCollapsed && isMouseHovered) },
       skin === 'semi-dark' ? 'menu-dark' : 'menu-light'
