@@ -235,7 +235,6 @@ export default {
   },
   watch: {
     scroll() {
-      console.log('foi')
       window.addEventListener('hashchange', () => window.scrollTo(window.scrollX, window.scrollY - 100))
     },
   },
@@ -250,9 +249,8 @@ export default {
       this.data.congratulations.name = userData.fullName.split(' ')[0] || userData.username
     })
 
-    this.$http.get('https://api.thingspeak.com/channels/1552907/feeds.json?api_key=HM30N5H1K70GRR25&results=1').then(response => {
-      console.log(response, 'response')
-    })
+    // this.$http.get('https://api.thingspeak.com/channels/1552907/feeds.json?api_key=HM30N5H1K70GRR25&results=1').then(response => {
+    // })
   },
   methods: {
     kFormatter,
