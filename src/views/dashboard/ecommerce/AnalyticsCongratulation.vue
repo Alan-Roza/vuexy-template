@@ -25,11 +25,20 @@
         icon="AwardIcon"
       />
     </b-avatar>
-    <h1 class="mb-1 mt-50 text-white">
+    <h1
+      v-if="data.saleToday > 0"
+      class="mb-1 mt-50 text-white"
+    >
       Isso é incrível!
     </h1>
+    <h1
+      v-else
+      class="mb-1 mt-50 text-white"
+    >
+      Continue de olho!
+    </h1>
     <b-card-text class="m-auto w-75">
-      Você conseguiu uma redução de <strong>{{ data.saleToday }}%</strong> em temperatura em relação ao ambiente externo.
+      Você conseguiu uma redução de <strong>{{ data.saleToday }}℃</strong> em temperatura em relação ao ambiente externo.
     </b-card-text>
   </b-card>
 </template>

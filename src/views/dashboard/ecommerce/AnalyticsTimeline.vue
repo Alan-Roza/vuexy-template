@@ -38,16 +38,16 @@
 
         <app-timeline-item variant="success">
           <div class="d-flex justify-content-between flex-sm-row flex-column mb-sm-0 mb-2">
-            <h6>{{ data.step3.title }}</h6>
-            <small class="timeline-item-time text-nowrap text-muted ml-1">{{ data.step3.duration }}</small>
+            <h6>{{ data.step4.title }}</h6>
+            <small class="timeline-item-time text-nowrap text-muted ml-1">{{ data.step4.duration }}</small>
           </div>
-          <p>{{ data.step3.subtitle }}</p>
+          <p>{{ data.step4.subtitle }}</p>
         </app-timeline-item>
 
         <app-timeline-item
-          :title="data.step4.title"
-          :subtitle="data.step4.subtitle"
-          :time="data.step4.duration"
+          :title="data.step5.title"
+          :subtitle="data.step5.subtitle"
+          :time="data.step5.duration"
           variant="danger"
         />
       </app-timeline>

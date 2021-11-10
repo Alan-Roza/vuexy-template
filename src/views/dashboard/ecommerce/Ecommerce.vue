@@ -87,29 +87,30 @@
           sm="6"
         >
           <statistic-card-with-area-chart
-            v-if="hardCodedData.temperature"
+            v-if="externa.temperature"
             icon="SunIcon"
             color="danger"
             :statistic="
-              kFormatter(hardCodedData.temperature.analyticsData.current)
+              kFormatter(externa.temperature.analyticsData.current)
             "
             statistic-title="Temperatura Externa"
-            :chart-data="hardCodedData.temperature.series"
+            :chart-data="temp"
           />
+
         </b-col>
         <b-col
           lg="3"
           sm="6"
         >
           <statistic-card-with-area-chart
-            v-if="hardCodedData.temperature"
+            v-if="interna.temperature"
             icon="SunIcon"
             color="warning"
             :statistic="
-              kFormatter(hardCodedData.temperature.analyticsData.current)
+              kFormatter(interna.temperature.analyticsData.current)
             "
             statistic-title="Temperatura Interna"
-            :chart-data="hardCodedData.temperature.series"
+            :chart-data="interna.temperature.series"
           />
         </b-col>
       </b-row>
@@ -121,13 +122,14 @@
               lg="4"
               md="6"
             >
+              <!-- {{ humidade }} -->
               <ecommerce-goal-overview :data="data.goalOverview" />
             </b-col>
             <b-col lg="4">
               <analytics-timeline :data="timeline" />
             </b-col>
             <b-col lg="4">
-              <analytics-support-tracker :data="suporteTrack" />
+              <analytics-support-tracker :data="data.suporteTrack" />
             </b-col>
           </b-row>
         </b-col>
@@ -139,7 +141,7 @@
 <script>
 import { BRow, BCol } from 'bootstrap-vue'
 
-import { getUserData } from '@/auth/utils'
+// import { getUserData } from '@/auth/utils'
 import StatisticCardWithAreaChart from '@core/components/statistics-cards/StatisticCardWithAreaChart.vue'
 import { kFormatter } from '@core/utils/filter'
 import AnalyticsSupportTracker from './AnalyticsSupportTracker.vue'
@@ -173,80 +175,151 @@ export default {
   },
   data() {
     return {
-      data: {},
+      data: {
+        goalOverview: {
+          // completed: '786,617',
+          // inProgress: '13,561',
+          series: [
+            83,
+          ],
+        },
+        congratulations: {
+          name: 'Alan',
+          saleToday: '0',
+        },
+        suporteTrack: {
+          lastDays: ['last 28', 'last month'],
+          supportTrackerRadialBar: {
+            series: 50,
+          },
+          newTicket: 29,
+          openTicket: 20,
+          responseTime: 1,
+          title: 'luz',
+          totalTicket: 160,
+        },
+      },
+
       timeline: {
         step1: {
-          duration: '12 min',
-          fileName: 'data.json',
-          img: 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACEAAAAkCAMAAAAw96PuAAAAAXNSR0IArs4c6QAAAERlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAA6ABAAMAAAABAAEAAKACAAQAAAABAAAAIaADAAQAAAABAAAAJAAAAADeoA9wAAABcVBMVEUAAAD/qlX/qlX/n2D/qlX/n1D/pUv/qkf/oUP/pk3/qkn/okb/o0f/okT/n0j/oEn/n0b/pEn/oEf/okb/oUj/o0f/n0X/oUT/o0f/oEb/pEP/okb/n0T/okT/oEb/n0T/oEX/o0b/n0P/oUP/okb/oUT/n0b/oUX/oET/oUb/n0X/oET/oUP/oEX/okT/oEP/oUX/oUP/oET/oUX/oEX/n0T/oEX/oET/oEX/n0T/oET/n0P/oEX/n0P/oUT/n0T/oEX/oUT/oET/oEP/oET/oUT/oEP/oEP/oET/oEP/oEP/oET/n0T/oET/oEP/n0T/oET/n0T/n0T/oET/n0T/n0P/oET/n0P/oET/n0T/oEP/oET/oET/n0T/n0T/oEP/oEP/n0P/oET/n0P/n0T/n0T/n0P/oEP/n0T/oEP/n0P/oET/n0T/oEP/oET/n0T/oET/oEP/n0T/oEP/oET/n0P/oEP/oET/n0T/oEP/n0NWaDR5AAAAenRSTlMAAwYICRAREhMUFRYZHiAjKCorLC4vMDEyMzU3ODw+QENFSExNT1BRU1RVVldZWltcX2Zna21zdHZ4e31+hYeIkZKTlJmam5yen6OkpaanqKmtsLG4ury9v8DBw8fIytHU1dfY2t3g5OXn6Onq6+zt7u/w8/n6+/z9/jLTlDYAAAE3SURBVDjL7dRHUwIxFMDxZ0OsIAoqtijqYhcVCxZQZO0iWLAXYC0IsqIivE/vRh2GLLs5evJ/yLyZ/CaHzCQAAAbxAZmezMBUfoPqEk2McGFpz5Zi4VPtyjllSTYXiYBKRCYpSbVwBIx/UmLlCBij5MXGETCaVYZ0G0fAMCVyO0eA80MZX+0cAQIlmVaOgAFK5rREbOq3sJ5g+hcaQvweTyOYCPjjiMf+c2XZyeP+PSsER6rW2ruNQzWDlW4ksIlVB2pxBnuIR3CCqxAjlvo3Y4nITgCRlsve8RZCxGP2NgRZ0S8gXpuc6xDFEFyRhWBdI3NGdM2wKC1tmEbSxr5dmz1H5vMdwIhw13TmTuh2JzHu6pmV0bOFl46Lv71TH0/M6P0OhTp1fphChz8Po1p81N6XVioAvgBZgp3AxW+3KgAAAABJRU5ErkJggg==',
-          subtitle: 'subtitle',
-          title: 'title',
+          // duration: '12 min',
+          subtitle: 'Está em 83%',
+          title: 'Humidade do solo',
         },
         step2: {
-          avatar: '/img/avatar-s-9.397f0acd.jpg',
-          avatarName: 'John',
-          occupation: 'CEO',
-          duration: '12 min',
-          subtitle: 'subtitle',
-          title: 'title',
+          // duration: '12 min',
+          subtitle: 'Está em 23℃',
+          title: 'Temperatura externa',
         },
         step3: {
-          avatar: '/img/avatar-s-9.397f0acd.jpg',
-          avatarName: 'John',
-          occupation: 'CEO',
-          duration: '12 min',
-          subtitle: 'subtitle',
-          title: 'title',
+          // duration: '12 min',
+          subtitle: 'Está em 50%',
+          title: 'Sistema de iluminação',
         },
         step4: {
-          avatar: '/img/avatar-s-9.397f0acd.jpg',
-          avatarName: 'John',
-          occupation: 'CEO',
-          duration: '12 min',
-          subtitle: 'subtitle',
-          title: 'title',
+          // duration: '12 min',
+          subtitle: 'Está em 23℃',
+          title: 'Temperatura interna',
+        },
+        step5: {
+          // duration: '12 min',
+          subtitle: 'Está ligado',
+          title: 'Irrigação automática',
         },
       },
-      suporteTrack: {
-        lastDays: ['last 28', 'last month'],
-        supportTrackerRadialBar: {
-          series: [83],
-        },
-        newTicket: 29,
-        openTicket: 20,
-        responseTime: 1,
-        title: 'luz',
-        totalTicket: 160,
-      },
-      hardCodedData: {
+      fullData: {},
+
+      // temperatura
+      externa: {
         temperature: {
           series: [
             {
               name: 'Temperatura',
-              data: [24, 23, 22, 24, 25, 27],
+              data: [32, 28, 22, 23],
             },
           ],
           analyticsData: {
-            current: '27℃',
+            current: '23',
+          },
+        },
+      },
+      interna: {
+        temperature: {
+          series: [
+            {
+              name: 'Temperatura',
+              data: [30, 27, 21, 23],
+            },
+          ],
+          analyticsData: {
+            current: '23',
           },
         },
       },
     }
   },
+
+  computed: {
+    temp() {
+      return this.externa.temperature.series
+    },
+    tempInt() {
+      return this.interna.temperature.series
+    },
+  },
+
   watch: {
     scroll() {
       window.addEventListener('hashchange', () => window.scrollTo(window.scrollX, window.scrollY - 100))
     },
   },
+
   created() {
+    setInterval(() => {
+      fetch('https://api.thingspeak.com/channels/1556327/feeds.json?results=1')
+        .then(response => response.json())
+        .then(data => {
+          //         this.fullData = data
+          // this.data.goalOverview.series.push(data.feeds[0].field3)
+          // this.interna.temperature.AnalyticsTimeline.current = data.feeds[0].field2
+          data.feeds.forEach(result => {
+            if (result.field1 !== null) {
+              this.externa.temperature.analyticsData.current = result.field1
+              this.timeline.step2.subtitle = `Está em ${result.field1}℃`
+              if (this.externa.temperature.series[0].data[(this.externa.temperature.series[0].data.length - 1)] !== parseFloat(result.field1)) {
+                this.externa.temperature.series[0].data.push(parseFloat(result.field1))
+              }
+            }
+            if (result.field2 !== null) {
+              this.interna.temperature.analyticsData.current = result.field2
+              this.timeline.step4.subtitle = `Está em ${result.field2}℃`
+              if (this.interna.temperature.series[0].data[(this.interna.temperature.series[0].data.length - 1)] !== parseFloat(result.field2)) {
+                this.interna.temperature.series[0].data.push(parseFloat(result.field2))
+              }
+            }
+            if (result.field1 - result.field2 >= 0) {
+              this.data.congratulations.saleToday = result.field1 - result.field2
+            } else this.data.congratulations.saleToday = 0
+            if (result.field3 && this.data.goalOverview.series[0] !== parseFloat(result.field3)) {
+              this.data.goalOverview.series = [parseFloat(result.field3)]
+              this.timeline.step1.subtitle = `Está em ${result.field3}%`
+            }
+            if (result.field5) {
+              this.timeline.step5.subtitle = `Está ${result.field5 === 0 ? 'desligado' : 'ligado'}`
+            }
+          })
+        })
+    }, 10000)
+
     // data
     this.$http.get('/ecommerce/data').then(response => {
-      this.data = response.data
+      // this.data = response.data
+      console.log(response.data)
 
       // ? Your API will return name of logged in user or you might just directly get name of logged in user
       // ? This is just for demo purpose
-      const userData = getUserData()
-      this.data.congratulations.name = userData.fullName.split(' ')[0] || userData.username
+      // const userData = getUserData()
+      // this.data.congratulations.name = userData.fullName.split(' ')[0] || userData.username
     })
 
     // this.$http.get('https://api.thingspeak.com/channels/1552907/feeds.json?api_key=HM30N5H1K70GRR25&results=1').then(response => {

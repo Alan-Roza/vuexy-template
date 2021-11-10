@@ -5,7 +5,7 @@
   >
     <b-card-header>
       <h4 class="mb-0">
-        HUMIDADE DO AR
+        HUMIDADE DO SOLO
       </h4>
     </b-card-header>
 
@@ -26,6 +26,7 @@
           Irrigação automática
         </b-card-text>
         <b-form-checkbox
+          v-model="irrigacao"
           checked="true"
           class="custom-control-primary custom-suite"
           name="check-button"
@@ -64,6 +65,7 @@ export default {
   },
   data() {
     return {
+      irrigacao: true,
       switch1: true,
       goalOverviewRadialBar: {
         chart: {
@@ -128,6 +130,14 @@ export default {
         },
       },
     }
+  },
+  beforeUpdate() {
+    this.irrigacaoSwitch()
+  },
+  methods: {
+    irrigacaoSwitch() {
+      this.$http.get(`https://api.thingspeak.com/update?api_key=65V22GWO6Y31AQWM&field5=${this.irrigacao ? 1 : 0}`)
+    },
   },
 }
 </script>

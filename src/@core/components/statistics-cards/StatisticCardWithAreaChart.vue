@@ -13,7 +13,7 @@
       </b-avatar>
       <div class="truncate">
         <h2 class="mb-25 font-weight-bolder">
-          {{ statistic }}
+          {{ statistic }}℃
         </h2>
         <span>{{ statisticTitle }}</span>
       </div>
@@ -24,7 +24,7 @@
       height="100"
       width="100%"
       :options="chartOptionsComputed"
-      :series="chartData"
+      :series="tempt"
     />
 
   </b-card>
@@ -69,7 +69,17 @@ export default {
       default: null,
     },
   },
+
+  data() {
+    return {
+      tempt: this.chartData,
+    }
+  },
   computed: {
+    temp() {
+      console.log(this.chartData, 'chart')
+      return this.chartData
+    },
     chartOptionsComputed() {
       if (this.chartOptions === null) {
         const options = JSON.parse(JSON.stringify(areaChartOptions))
@@ -77,6 +87,12 @@ export default {
         return options
       }
       return this.chartOptions
+    },
+  },
+  watch: {
+    temperature() {
+      console.log('aaaa', this.chartData)
+      this.tempt = this.chartData
     },
   },
 }
