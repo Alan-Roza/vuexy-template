@@ -20,6 +20,7 @@
     </b-card-body>
 
     <vue-apex-charts
+      ref="realtimeChart"
       type="area"
       height="100"
       width="100%"
@@ -89,10 +90,17 @@ export default {
       return this.chartOptions
     },
   },
-  watch: {
-    temperature() {
-      console.log('aaaa', this.chartData)
-      this.tempt = this.chartData
+  beforeUpdate() {
+    this.updateSeries()
+  },
+  methods: {
+    updateSeries() {
+      window.dispatchEvent(new Event('resize'))
+    },
+    updateSeriesLine() {
+      this.$refs.realtimeChart.updateSeries([{
+        data: this.chartData,
+      }], true)
     },
   },
 }

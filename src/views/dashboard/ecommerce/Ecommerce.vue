@@ -301,8 +301,8 @@ export default {
               this.data.congratulations.saleToday = result.field1 - result.field2
             } else this.data.congratulations.saleToday = 0
             if (result.field3 && this.data.goalOverview.series[0] !== parseFloat(result.field3)) {
-              this.data.goalOverview.series = [parseFloat(result.field3)]
-              this.timeline.step1.subtitle = `Está em ${result.field3}%`
+              this.data.goalOverview.series = [parseFloat(result.field3 > 100 ? 100 : result.field3)]
+              this.timeline.step1.subtitle = `Está em ${result.field3 > 100 ? 100 : result.field3}%`
             }
             if (result.field5) {
               this.timeline.step5.subtitle = `Está ${result.field5 === 0 ? 'desligado' : 'ligado'}`
