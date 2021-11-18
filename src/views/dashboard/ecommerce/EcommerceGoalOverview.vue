@@ -31,6 +31,7 @@
           class="custom-control-primary custom-suite"
           name="check-button"
           switch
+          :disabled="checkboxDisabled"
         />
       </b-col>
     </b-row>
@@ -65,6 +66,7 @@ export default {
   },
   data() {
     return {
+      checkboxDisabled: false,
       irrigacao: true,
       switch1: true,
       goalOverviewRadialBar: {
@@ -137,6 +139,10 @@ export default {
   methods: {
     irrigacaoSwitch() {
       this.$http.get(`https://api.thingspeak.com/update?api_key=65V22GWO6Y31AQWM&field5=${this.irrigacao ? 1 : 0}`)
+      this.checkboxDisabled = true
+      setTimeout(() => {
+        this.checkboxDisabled = false
+      }, 15000)
     },
   },
 }

@@ -78,7 +78,6 @@ export default {
   },
   computed: {
     temp() {
-      console.log(this.chartData, 'chart')
       return this.chartData
     },
     chartOptionsComputed() {

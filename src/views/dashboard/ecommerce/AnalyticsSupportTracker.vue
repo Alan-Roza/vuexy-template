@@ -51,6 +51,8 @@
               v-model="range"
               type="range"
               class="custom-range"
+              :disabled="dimerDisabled"
+              @mouseup="dimer"
             >
           </div>
         </b-col>
@@ -84,8 +86,9 @@ export default {
   },
   data() {
     return {
+      dimerDisabled: false,
+      range: this.data.supportTrackerRadialBar.series[0] || 100,
       value: 50,
-      range: 0,
       direction: 'ltr',
       supportTrackerRadialBar: {
         chartOptions: {
@@ -138,5 +141,27 @@ export default {
       },
     }
   },
+  methods: {
+    dimer() {
+      this.$http.get(`https://api.thingspeak.com/update?api_key=65V22GWO6Y31AQWM&field4=${this.range}`)
+      this.dimerDisabled = true
+      setTimeout(() => {
+        this.dimerDisabled = false
+      }, 15000)
+    },
+  },
+  // beforeUpdate() {
+  //   this.updateSeries()
+  // },
+  // methods: {
+  //   updateSeries() {
+  //     window.dispatchEvent(new Event('resize'))
+  //   },
+  //   updateSeriesLine() {
+  //     this.$refs.realtimeChart.updateSeries([{
+  //       data: this.data,
+  //     }], true)
+  //   },
+  // },
 }
 </script>

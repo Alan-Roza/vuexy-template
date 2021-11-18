@@ -190,7 +190,7 @@ export default {
         suporteTrack: {
           lastDays: ['last 28', 'last month'],
           supportTrackerRadialBar: {
-            series: 50,
+            series: [100],
           },
           newTicket: 29,
           openTicket: 20,
@@ -213,7 +213,7 @@ export default {
         },
         step3: {
           // duration: '12 min',
-          subtitle: 'Está em 50%',
+          subtitle: 'Está em 100%',
           title: 'Sistema de iluminação',
         },
         step4: {
@@ -304,23 +304,28 @@ export default {
               this.data.goalOverview.series = [parseFloat(result.field3 > 100 ? 100 : result.field3)]
               this.timeline.step1.subtitle = `Está em ${result.field3 > 100 ? 100 : result.field3}%`
             }
+            if (result.field4) {
+              this.timeline.step3.subtitle = `Está em ${result.field4}%`
+              console.log(result.field4)
+              this.data.suporteTrack.supportTrackerRadialBar.series = [parseFloat(result.field4)]
+            }
             if (result.field5) {
-              this.timeline.step5.subtitle = `Está ${result.field5 === 0 ? 'desligado' : 'ligado'}`
+              this.timeline.step5.subtitle = `Está ${parseFloat(result.field5) === 0 ? 'desligado' : 'ligado'}`
             }
           })
         })
     }, 10000)
 
     // data
-    this.$http.get('/ecommerce/data').then(response => {
-      // this.data = response.data
-      console.log(response.data)
+    // this.$http.get('/ecommerce/data').then(response => {
+    // this.data = response.data
+    // console.log(response.data)
 
-      // ? Your API will return name of logged in user or you might just directly get name of logged in user
-      // ? This is just for demo purpose
-      // const userData = getUserData()
-      // this.data.congratulations.name = userData.fullName.split(' ')[0] || userData.username
-    })
+    // ? Your API will return name of logged in user or you might just directly get name of logged in user
+    // ? This is just for demo purpose
+    // const userData = getUserData()
+    // this.data.congratulations.name = userData.fullName.split(' ')[0] || userData.username
+    // })
 
     // this.$http.get('https://api.thingspeak.com/channels/1552907/feeds.json?api_key=HM30N5H1K70GRR25&results=1').then(response => {
     // })
