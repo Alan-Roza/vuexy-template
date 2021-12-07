@@ -205,7 +205,7 @@ export default {
         step1: {
           // duration: '12 min',
           subtitle: 'Está em 83%',
-          title: 'Humidade do solo',
+          title: 'Umidade do solo',
         },
         step2: {
           // duration: '12 min',
@@ -277,7 +277,7 @@ export default {
 
   created() {
     setInterval(() => {
-      fetch('https://api.thingspeak.com/channels/1556327/feeds.json?results=1')
+      fetch('https://api.thingspeak.com/channels/1556327/feeds.json?results=2')
         .then(response => response.json())
         .then(data => {
           //         this.fullData = data
@@ -298,6 +298,7 @@ export default {
                 this.interna.temperature.series[0].data.push(parseFloat(result.field2))
               }
             }
+            console.log('fields', result.field1, result.field2)
             if (result.field1 - result.field2 >= 0) {
               this.data.congratulations.saleToday = result.field1 - result.field2
             } else this.data.congratulations.saleToday = 0

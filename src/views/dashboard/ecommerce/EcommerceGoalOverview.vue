@@ -5,7 +5,7 @@
   >
     <b-card-header>
       <h4 class="mb-0">
-        HUMIDADE DO SOLO
+        UMIDADE DO SOLO
       </h4>
     </b-card-header>
 

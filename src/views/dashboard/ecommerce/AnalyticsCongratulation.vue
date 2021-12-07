@@ -37,8 +37,17 @@
     >
       Continue de olho!
     </h1>
-    <b-card-text class="m-auto w-75">
-      Você conseguiu uma redução de <strong>{{ data.saleToday }}℃</strong> em temperatura em relação ao ambiente externo.
+    <b-card-text
+      v-if="data.saleToday > 0"
+      class="m-auto w-75"
+    >
+      Você conseguiu uma redução de temperatura em relação ao ambiente externo.
+    </b-card-text>
+    <b-card-text
+      v-else
+      class="m-auto w-75"
+    >
+      Você não conseguiu ainda uma redução de temperatura em relação ao ambiente externo.
     </b-card-text>
   </b-card>
 </template>
