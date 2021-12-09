@@ -298,7 +298,6 @@ export default {
                 this.interna.temperature.series[0].data.push(parseFloat(result.field2))
               }
             }
-            console.log('fields', result.field1, result.field2)
             if (result.field1 - result.field2 >= 0) {
               this.data.congratulations.saleToday = result.field1 - result.field2
             } else this.data.congratulations.saleToday = 0
@@ -308,7 +307,6 @@ export default {
             }
             if (result.field4) {
               this.timeline.step3.subtitle = `Está em ${result.field4}%`
-              console.log(result.field4)
               this.data.suporteTrack.supportTrackerRadialBar.series = [parseFloat(result.field4)]
             }
             if (result.field5) {
